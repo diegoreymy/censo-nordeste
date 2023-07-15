@@ -40,3 +40,6 @@ Thumbs.db
 
 # Environment files with sensitive data
 /src/environments/*.ts
+
+# Package lock
+package-lock.json
