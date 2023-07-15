@@ -43,3 +43,10 @@ Thumbs.db
 
 # Package lock
 package-lock.json
+
+# Visual Studio Code
+.vscode/
+
+# EditorConfig
+.editorconfig
+
