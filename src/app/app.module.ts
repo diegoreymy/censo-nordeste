@@ -3,16 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { TelefonoMaskDirective } from './telefono-mask.directive';
+import { ApiKeyInterceptor } from './api-key.interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TelefonoMaskDirective
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: ApiKeyInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

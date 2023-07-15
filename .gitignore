@@ -21,22 +21,22 @@ yarn-error.log
 *.sublime-workspace
 
 # Visual Studio Code
-.vscode/*
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-.history/*
 
-# Miscellaneous
+# Cache and dependencies
 /.angular/cache
 .sass-cache/
 /connect.lock
 /coverage
-/libpeerconnection.log
-testem.log
 /typings
 
 # System files
 .DS_Store
 Thumbs.db
+
+# Environment files with sensitive data
+/src/environments/*.ts
