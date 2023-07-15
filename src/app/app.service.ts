@@ -14,27 +14,27 @@ const httpOptions = {
 export class AppService {
   apiUrl = environment.apiUrl;
   apiKey = environment.apiKey;
-  endpoint = '/personas'; 
+  personEndpoint = 'personas'; 
 
   constructor(private http: HttpClient) { }
 
   getPersonaById(id: number): Observable<Persona> {
-    return this.http.get<Persona>(`${this.apiUrl}/get/${id}`);
+    return this.http.get<Persona>(`${this.apiUrl}/${this.personEndpoint}/get/${id}`);
   }
 
   getAllPersonas(page: number, size: number): Observable<Persona[]> {
-    return this.http.get<Persona[]>(`${this.apiUrl}/getAll?page=${page}&size=${size}`);
+    return this.http.get<Persona[]>(`${this.apiUrl}/${this.personEndpoint}/getAll?page=${page}&size=${size}`);
   }
 
   addPersona(persona: Persona): Observable<Persona> {
-    return this.http.post<Persona>(`${this.apiUrl}/add`, persona, httpOptions);
+    return this.http.post<Persona>(`${this.apiUrl}/${this.personEndpoint}/add`, persona, httpOptions);
   }
 
   updatePersona(id: number, persona: Persona): Observable<Persona> {
-    return this.http.put<Persona>(`${this.apiUrl}/update/${id}`, persona, httpOptions);
+    return this.http.put<Persona>(`${this.apiUrl}/${this.personEndpoint}/update/${id}`, persona, httpOptions);
   }
 
   deletePersona(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/${this.personEndpoint}/delete/${id}`);
   }
 }
