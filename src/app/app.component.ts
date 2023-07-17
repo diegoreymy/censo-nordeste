@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   submissionSuccess = false;
   submissionError = false;
   errorMessage = '';
+  passportError = false;
 
   constructor(private fb: FormBuilder, private personaService: AppService) { }
 
@@ -37,6 +38,7 @@ export class AppComponent implements OnInit {
       recibirNotificaciones: [false],
       email: [{ value: '', disabled: true }, Validators.email],
       telefono: [{ value: '', disabled: true }, Validators.pattern(/\(\d{2}\) \d{4,5}-\d{4}/)],
+      terminosAceptados: [false, Validators.requiredTrue],
     });
   }
 
@@ -63,7 +65,8 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.personaForm.valid && this.onlyOnePassportSelected() && this.atLeastOnePassportSelected()) {
+    this.passportError = !(this.onlyOnePassportSelected() && this.atLeastOnePassportSelected());
+    if (this.personaForm.valid && !this.passportError) {
       const nuevaPersona: Persona = {
         nombre: this.personaForm.value.nombre ?? '',
         apellido: this.personaForm.value.apellido ?? '',
@@ -108,9 +111,13 @@ export class AppComponent implements OnInit {
     const pasaporteVencido = this.personaForm.get('pasaporteVencido')?.value ?? false;
     const pasaporteVencimientoProximo = this.personaForm.get('pasaporteVencimientoProximo')?.value ?? false;
     const pasaportePrimeraVez = this.personaForm.get('pasaportePrimeraVez')?.value ?? false;
-
+  
+    if (!pasaporteVencido && !pasaporteVencimientoProximo && !pasaportePrimeraVez) {
+      return false;
+    }
+    
     return pasaporteVencido || pasaporteVencimientoProximo || pasaportePrimeraVez;
-  }
+  }  
 
   deseleccionarOtros(campoSeleccionado: string): void {
     const pasaporteVencido = this.personaForm.get('pasaporteVencido');

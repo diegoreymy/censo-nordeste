@@ -26,7 +26,7 @@
             el
             nordeste.</p>
           <p>Agradecemos de antemano la atención que se brinde a esta solicitud y contamos con su colaboración y apoyo
-            en la divulgación.</p>
+            en la divulgación. Para más información o preguntas, puedes contactarnos en: <a href="mailto:venezolanosdelnordetebrasil@gmail.com">venezolanosdelnordetebrasil@gmail.com</a></p>
         </div>
       </div>
     </div>
@@ -105,8 +105,18 @@
                 [disabled]="!personaForm.value.recibirNotificaciones" telefonoMask>
             </div>
 
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="terminosAceptados" formControlName="terminosAceptados" required>
+              <label class="form-check-label" for="terminosAceptados">
+                Acepto el <a href="#" data-toggle="modal" data-target="#modalAceptacionUsoDatos">uso de mis datos personales</a> para la finalidad del censo
+              </label>
+            </div>
+
             <div class="d-grid gap-2 mt-3">
               <button type="submit" class="btn btn-primary" [disabled]="!personaForm.valid">Enviar</button>
+              <div *ngIf="passportError" class="alert alert-danger mt-3">
+                Al menos una opción del estado de su pasaporte debe estar seleccionada.
+              </div>
             </div>
           </div>
         </div>
@@ -124,6 +134,48 @@
           <h4 class="alert-heading">Hubo un problema</h4>
           <p>{{errorMessage}}</p>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalAceptacionUsoDatos" tabindex="-1" role="dialog" aria-labelledby="tituloModalAceptacionUsoDatos" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="tituloModalAceptacionUsoDatos">Términos de Aceptación de Uso de Datos Personales</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Al utilizar este formulario y enviar su información personal, usted otorga su consentimiento para la recolección, uso y divulgación de su información personal de acuerdo con la siguiente política de privacidad y las leyes aplicables en la República Federativa de Brasil, en particular la Ley General de Protección de Datos (LGPD), Ley nº 13.709.</p>
+      
+        <h5>Recolección de información personal:</h5>
+        <p>Recopilamos y almacenamos la información personal que usted proporciona voluntariamente en nuestro formulario. Esta información puede incluir, pero no se limita a, su nombre, apellido, número de cédula, estado de su pasaporte, ciudad y estado de residencia, dirección de correo electrónico y número de teléfono.</p>
+      
+        <h5>Uso de información personal:</h5>
+        <p>Utilizamos la información personal recopilada con el propósito de realizar un censo para demostrar ante el personal diplomático de la embajada de Venezuela la necesidad de reapertura de nuestro consulado en la ciudad de Recife. Asimismo, la información será usada para enviar avisos sobre campañas de servicio consular o apertura del consulado, si usted opta por recibir tales notificaciones.</p>
+      
+        <h5>Divulgación de información personal:</h5>
+        <p>No divulgamos su información personal a terceros sin su consentimiento, a menos que sea requerido por la ley o para cumplir con el propósito del censo. En caso de divulgación a terceros, garantizamos que estas partes cumplirán con nuestra Política de Privacidad y las leyes de protección de datos aplicables.</p>
+      
+        <h5>Seguridad de la información personal:</h5>
+        <p>Implementamos medidas de seguridad técnicas y organizativas para proteger su información personal contra el acceso, uso o divulgación no autorizados.</p>
+      
+        <h5>Acceso y corrección de la información personal:</h5>
+        <p>Usted tiene derecho a acceder, corregir, actualizar, anonimizar, bloquear o eliminar su información personal que almacenamos. Para ejercer estos derechos, puede contactarnos a través del correo electrónico <a href="mailto:venezolanosdelnordetebrasil@gmail.com">venezolanosdelnordetebrasil@gmail.com</a>.</p>
+      
+        <h5>Actualización de la Política de Privacidad:</h5>
+        <p>Podemos actualizar esta Política de Privacidad de vez en cuando. Le recomendamos que revise esta política regularmente para estar informado sobre cómo protegemos su información personal.</p>
+      
+        <p>Al marcar la casilla "Acepto el uso de mis datos personales para la finalidad del censo" y hacer clic en el botón "Enviar", usted confirma que ha leído y entendido esta Política de Privacidad y acepta el uso de su información personal según lo descrito anteriormente.</p>
+      
+        <p>Fecha de última actualización: 16 de Julio de 2023.</p>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
