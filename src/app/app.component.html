@@ -101,7 +101,7 @@
 
             <div class="form-group">
               <label for="telefono">Teléfono</label>
-              <input type="text" class="form-control" id="telefono" formControlName="telefono"
+              <input type="text" name="telefono" autocomplete="new-telefono" class="form-control" id="telefono" formControlName="telefono"
                 [disabled]="!personaForm.value.recibirNotificaciones" telefonoMask>
             </div>
 
