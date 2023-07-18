@@ -16,7 +16,12 @@ export class AppComponent implements OnInit {
   submissionSuccess = false;
   submissionError = false;
   errorMessage = '';
-  passportError = false;
+  pasaporteError = false;
+  isLoading = {
+    show: false,
+    message: ''
+  };
+
 
   constructor(private fb: FormBuilder, private personaService: AppService) { }
 
@@ -65,8 +70,12 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.passportError = !(this.onlyOnePassportSelected() && this.atLeastOnePassportSelected());
-    if (this.personaForm.valid && !this.passportError) {
+
+    this.pasaporteError = !(this.onlyOnePassportSelected() && this.atLeastOnePassportSelected());
+
+    if (this.personaForm.valid && !this.pasaporteError) {
+      this.isLoading.show = true;
+      this.isLoading.message = 'Enviando...';
       const nuevaPersona: Persona = {
         nombre: this.personaForm.value.nombre ?? '',
         apellido: this.personaForm.value.apellido ?? '',
@@ -85,11 +94,15 @@ export class AppComponent implements OnInit {
         data => {
           console.log('Persona agregada con éxito', data);
           this.submissionSuccess = true;
+          this.isLoading.show = false;
+          this.isLoading.message = '';
         },
         (httpErrorResponse: HttpErrorResponse) => {
           console.error('Hubo un error al agregar la persona', httpErrorResponse.error);
           this.submissionError = true;
           this.errorMessage = httpErrorResponse.error;
+          this.isLoading.show = false;
+          this.isLoading.message = '';
         }
       );
     }
@@ -111,13 +124,13 @@ export class AppComponent implements OnInit {
     const pasaporteVencido = this.personaForm.get('pasaporteVencido')?.value ?? false;
     const pasaporteVencimientoProximo = this.personaForm.get('pasaporteVencimientoProximo')?.value ?? false;
     const pasaportePrimeraVez = this.personaForm.get('pasaportePrimeraVez')?.value ?? false;
-  
+
     if (!pasaporteVencido && !pasaporteVencimientoProximo && !pasaportePrimeraVez) {
       return false;
     }
-    
+
     return pasaporteVencido || pasaporteVencimientoProximo || pasaportePrimeraVez;
-  }  
+  }
 
   deseleccionarOtros(campoSeleccionado: string): void {
     const pasaporteVencido = this.personaForm.get('pasaporteVencido');
