@@ -2,9 +2,7 @@ export interface Persona {
     nombre: string;
     apellido: string;
     cedula: number;
-    pasaporteVencido: boolean;
-    pasaporteVencimientoProximo: boolean;
-    pasaportePrimeraVez: boolean;
+    estadoPasaporte: string;
     ciudadResidencia: string;
     estadoResidencia: string;
     recibirNotificaciones: boolean;

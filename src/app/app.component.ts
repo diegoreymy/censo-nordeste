@@ -16,7 +16,6 @@ export class AppComponent implements OnInit {
   submissionSuccess = false;
   submissionError = false;
   errorMessage = '';
-  pasaporteError = false;
   isLoading = {
     show: false,
     message: ''
@@ -35,9 +34,7 @@ export class AppComponent implements OnInit {
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
       cedula: [null, Validators.required],
-      pasaporteVencido: [false],
-      pasaporteVencimientoProximo: [false],
-      pasaportePrimeraVez: [false],
+      estadoPasaporte: ['', Validators.required],
       ciudadResidencia: ['', Validators.required],
       estadoResidencia: ['', Validators.required],
       recibirNotificaciones: [false],
@@ -70,25 +67,22 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit(): void {
-
-    this.pasaporteError = !(this.onlyOnePassportSelected() && this.atLeastOnePassportSelected());
-
-    if (this.personaForm.valid && !this.pasaporteError) {
+    if (this.personaForm.valid) {
       this.isLoading.show = true;
       this.isLoading.message = 'Enviando...';
       const nuevaPersona: Persona = {
         nombre: this.personaForm.value.nombre ?? '',
         apellido: this.personaForm.value.apellido ?? '',
         cedula: this.personaForm.value.cedula ?? 0,
-        pasaporteVencido: this.personaForm.value.pasaporteVencido ?? false,
-        pasaporteVencimientoProximo: this.personaForm.value.pasaporteVencimientoProximo ?? false,
-        pasaportePrimeraVez: this.personaForm.value.pasaportePrimeraVez ?? false,
+        estadoPasaporte: this.personaForm.value.estadoPasaporte ?? '',
         ciudadResidencia: this.personaForm.value.ciudadResidencia ?? '',
         estadoResidencia: this.personaForm.value.estadoResidencia ?? '',
         recibirNotificaciones: this.personaForm.value.recibirNotificaciones ?? false,
         email: this.personaForm.value.email ?? '',
         telefono: this.personaForm.value.telefono ?? ''
       };
+
+      console.log(nuevaPersona)
 
       this.personaService.addPersona(nuevaPersona).subscribe(
         data => {
@@ -105,47 +99,6 @@ export class AppComponent implements OnInit {
           this.isLoading.message = '';
         }
       );
-    }
-  }
-
-  private onlyOnePassportSelected(): boolean {
-    const pasaporteVencido = this.personaForm.get('pasaporteVencido')?.value ?? false;
-    const pasaporteVencimientoProximo = this.personaForm.get('pasaporteVencimientoProximo')?.value ?? false;
-    const pasaportePrimeraVez = this.personaForm.get('pasaportePrimeraVez')?.value ?? false;
-
-    return (
-      (pasaporteVencido && !pasaporteVencimientoProximo && !pasaportePrimeraVez) ||
-      (!pasaporteVencido && pasaporteVencimientoProximo && !pasaportePrimeraVez) ||
-      (!pasaporteVencido && !pasaporteVencimientoProximo && pasaportePrimeraVez)
-    );
-  }
-
-  private atLeastOnePassportSelected(): boolean {
-    const pasaporteVencido = this.personaForm.get('pasaporteVencido')?.value ?? false;
-    const pasaporteVencimientoProximo = this.personaForm.get('pasaporteVencimientoProximo')?.value ?? false;
-    const pasaportePrimeraVez = this.personaForm.get('pasaportePrimeraVez')?.value ?? false;
-
-    if (!pasaporteVencido && !pasaporteVencimientoProximo && !pasaportePrimeraVez) {
-      return false;
-    }
-
-    return pasaporteVencido || pasaporteVencimientoProximo || pasaportePrimeraVez;
-  }
-
-  deseleccionarOtros(campoSeleccionado: string): void {
-    const pasaporteVencido = this.personaForm.get('pasaporteVencido');
-    const pasaporteVencimientoProximo = this.personaForm.get('pasaporteVencimientoProximo');
-    const pasaportePrimeraVez = this.personaForm.get('pasaportePrimeraVez');
-
-    if (campoSeleccionado === 'pasaporteVencido' && pasaporteVencido?.value) {
-      pasaporteVencimientoProximo?.patchValue(false);
-      pasaportePrimeraVez?.patchValue(false);
-    } else if (campoSeleccionado === 'pasaporteVencimientoProximo' && pasaporteVencimientoProximo?.value) {
-      pasaporteVencido?.patchValue(false);
-      pasaportePrimeraVez?.patchValue(false);
-    } else if (campoSeleccionado === 'pasaportePrimeraVez' && pasaportePrimeraVez?.value) {
-      pasaporteVencido?.patchValue(false);
-      pasaporteVencimientoProximo?.patchValue(false);
     }
   }
 }

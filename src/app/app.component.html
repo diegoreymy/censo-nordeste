@@ -54,24 +54,14 @@
               <input type="number" class="form-control" id="cedula" formControlName="cedula" required>
             </div>
 
-            <div class="form-check mb-3">
-              <input class="form-check-input" type="checkbox" id="pasaporteVencido" formControlName="pasaporteVencido"
-                (change)="deseleccionarOtros('pasaporteVencido')">
-              <label class="form-check-label" for="pasaporteVencido">Pasaporte vencido</label>
-            </div>
-
-            <div class="form-check mb-3">
-              <input class="form-check-input" type="checkbox" id="pasaporteVencimientoProximo"
-                formControlName="pasaporteVencimientoProximo"
-                (change)="deseleccionarOtros('pasaporteVencimientoProximo')">
-              <label class="form-check-label" for="pasaporteVencimientoProximo">Pasaporte con vencimiento
-                próximo</label>
-            </div>
-
-            <div class="form-check mb-3">
-              <input class="form-check-input" type="checkbox" id="pasaportePrimeraVez"
-                formControlName="pasaportePrimeraVez" (change)="deseleccionarOtros('pasaportePrimeraVez')">
-              <label class="form-check-label" for="pasaportePrimeraVez">Pasaporte por primera vez</label>
+            <div class="form-group mb-3">
+              <label for="estadoPasaporte">Estado del pasaporte</label>
+              <select class="form-control" id="estadoPasaporte" formControlName="estadoPasaporte" required>
+                <option value="vencido">Pasaporte vencido</option>
+                <option value="vencimientoProximo">Pasaporte con vencimiento en los próximos 12 meses</option>
+                <option value="primeraVez">Pasaporte por primera vez</option>
+                <option value="vigente">Pasaporte vigente</option>
+              </select>
             </div>
 
             <div class="form-group mb-3">
@@ -116,9 +106,6 @@
 
             <div class="d-grid gap-2 mt-3">
               <button type="submit" class="btn btn-primary" [disabled]="!personaForm.valid">Enviar</button>
-              <div *ngIf="pasaporteError" class="alert alert-danger mt-3">
-                Al menos una opción del estado de su pasaporte debe estar seleccionada.
-              </div>
             </div>
           </div>
         </div>
