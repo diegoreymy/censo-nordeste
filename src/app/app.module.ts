@@ -5,13 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { TelefonoMaskDirective } from './telefono-mask.directive';
-import { ApiKeyInterceptor } from './api-key.interceptor';
+import { TelefonoMaskDirective } from './directives/telefono-mask.directive';
+import { ApiKeyInterceptor } from './interceptors/api-key.interceptor';
+import { ExplanationOfReasonsComponent } from './components/explanation-of-reasons/explanation-of-reasons.component';
+import { AcceptanceUseDataComponent } from './components/acceptance-use-data/acceptance-use-data.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TelefonoMaskDirective
+    TelefonoMaskDirective,
+    ExplanationOfReasonsComponent,
+    AcceptanceUseDataComponent
   ],
   imports: [
     BrowserModule,

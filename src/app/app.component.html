@@ -1,35 +1,7 @@
 <div class="container py-5">
   <div class="row">
     <div class="col-lg-6">
-      <div class="card mb-4">
-        <div class="card-header">
-          <h2 class="mb-0">Censo de Venezolanos en el Nordeste Brasileño</h2>
-        </div>
-        <div class="card-body">
-          <h5>Exposición de Motivos:</h5>
-          <p>Desde el cierre de nuestro consulado, nos hemos visto privados de la posibilidad de mantener nuestros
-            documentos renovados, especialmente nuestro pasaporte. Es probable que, en la actualidad, la mayoría de
-            nosotros tenga dicho documento vencido.</p>
-          <p>Somos conscientes de que la única opción disponible para la renovación del pasaporte es acudir a ciudad
-            de
-            Brasilia en el distrito capital. Sin embargo, entendemos que no todos tienen la capacidad de movilizarse
-            hasta allí, además de considerar el costo asociado al trámite.</p>
-          <h5>Nuestro Propósito:</h5>
-          <p>Estamos haciendo este censo para demostrar ante el personal diplomático de la embajada de Venezuela que
-            existe un número considerable de venezolanos en el nordeste que justifica la reapertura de nuestro
-            consulado
-            en la ciudad de Recife o, en su defecto, la organización de una jornada especial en la cual el personal
-            diplomático de la Embajada de Venezuela se desplace hasta la ciudad de Recife para recabar los datos de
-            los
-            venezolanos que necesitan renovar su pasaporte.</p>
-          <p>Es importante recordar que Recife sigue siendo un punto estratégico para la comunidad de venezolanos en
-            el
-            nordeste.</p>
-          <p>Agradecemos de antemano la atención que se brinde a esta solicitud y contamos con su colaboración y apoyo
-            en la divulgación. Para más información o preguntas, puedes contactarnos en: <a
-              href="mailto:venezolanosdelnordetebrasil@gmail.com">venezolanosdelnordetebrasil@gmail.com</a></p>
-        </div>
-      </div>
+      <app-explanation-of-reasons></app-explanation-of-reasons>
     </div>
     <div class="col-lg-6" *ngIf="!submissionSuccess && !submissionError">
       <form [formGroup]="personaForm" (ngSubmit)="onSubmit()" novalidate>
@@ -147,47 +119,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Al utilizar este formulario y enviar su información personal, usted otorga su consentimiento para la
-          recolección, uso y divulgación de su información personal de acuerdo con la siguiente política de privacidad y
-          las leyes aplicables en la República Federativa de Brasil, en particular la Ley General de Protección de Datos
-          (LGPD), Ley nº 13.709.</p>
-
-        <h5>Recolección de información personal:</h5>
-        <p>Recopilamos y almacenamos la información personal que usted proporciona voluntariamente en nuestro
-          formulario. Esta información puede incluir, pero no se limita a, su nombre, apellido, número de cédula, estado
-          de su pasaporte, ciudad y estado de residencia, dirección de correo electrónico y número de teléfono.</p>
-
-        <h5>Uso de información personal:</h5>
-        <p>Utilizamos la información personal recopilada con el propósito de realizar un censo para demostrar ante el
-          personal diplomático de la embajada de Venezuela la necesidad de reapertura de nuestro consulado en la ciudad
-          de Recife. Asimismo, la información será usada para enviar avisos sobre campañas de servicio consular o
-          apertura del consulado, si usted opta por recibir tales notificaciones.</p>
-
-        <h5>Divulgación de información personal:</h5>
-        <p>No divulgamos su información personal a terceros sin su consentimiento, a menos que sea requerido por la ley
-          o para cumplir con el propósito del censo. En caso de divulgación a terceros, garantizamos que estas partes
-          cumplirán con nuestra Política de Privacidad y las leyes de protección de datos aplicables.</p>
-
-        <h5>Seguridad de la información personal:</h5>
-        <p>Implementamos medidas de seguridad técnicas y organizativas para proteger su información personal contra el
-          acceso, uso o divulgación no autorizados.</p>
-
-        <h5>Acceso y corrección de la información personal:</h5>
-        <p>Usted tiene derecho a acceder, corregir, actualizar, anonimizar, bloquear o eliminar su información personal
-          que almacenamos. Para ejercer estos derechos, puede contactarnos a través del correo electrónico <a
-            href="mailto:venezolanosdelnordetebrasil@gmail.com">venezolanosdelnordetebrasil@gmail.com</a>.</p>
-
-        <h5>Actualización de la Política de Privacidad:</h5>
-        <p>Podemos actualizar esta Política de Privacidad de vez en cuando. Le recomendamos que revise esta política
-          regularmente para estar informado sobre cómo protegemos su información personal.</p>
-
-        <p>Al marcar la casilla "Acepto el uso de mis datos personales para la finalidad del censo" y hacer clic en el
-          botón "Enviar", usted confirma que ha leído y entendido esta Política de Privacidad y acepta el uso de su
-          información personal según lo descrito anteriormente.</p>
-
-        <p>Fecha de última actualización: 16 de Julio de 2023.</p>
+        <app-acceptance-use-data></app-acceptance-use-data>
       </div>
-
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>

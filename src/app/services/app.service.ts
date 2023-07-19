@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Persona } from './persona.model'; 
+import { Persona } from '../interfaces/persona.model'; 
 import { environment } from 'src/environments/environment';
 
 const httpOptions = {

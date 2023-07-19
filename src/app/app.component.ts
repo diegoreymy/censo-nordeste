@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AppService } from './app.service';
-import { Persona } from './persona.model';
+import { AppService } from './services/app.service';
+import { Persona } from './interfaces/persona.model';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
     show: false,
     message: ''
   };
-
 
   constructor(private fb: FormBuilder, private personaService: AppService) { }
 
